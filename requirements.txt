@@ -1,0 +1,7 @@
+streamlit>=1.25
+pandas
+numpy
+plotly
+scipy
+Pillow
+xlsxwriter
