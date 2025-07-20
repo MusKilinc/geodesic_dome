@@ -367,26 +367,13 @@ if 'dome' in st.session_state:
     )
     st.plotly_chart(fig, use_container_width=True)
 
-    # TIFF Download
-    png_bytes = fig.to_image(format="png", scale=4)
-    img = Image.open(io.BytesIO(png_bytes))
-    tiff_buffer = io.BytesIO()
-    img.save(tiff_buffer, format="TIFF", dpi=(300,300))
-    tiff_bytes = tiff_buffer.getvalue()
+    # HTML Download (Kaleido olmadan)
+    html_bytes = fig.to_html().encode("utf-8")
     st.download_button(
-        label="Download Figure as TIFF",
-        data=tiff_bytes,
-        file_name="dome_figure.tiff",
-        mime="image/tiff"
-    )
-
-    # PDF Download
-    pdf_bytes = fig.to_image(format="pdf")
-    st.download_button(
-        label="Download Figure as PDF",
-        data=pdf_bytes,
-        file_name="dome_figure.pdf",
-        mime="application/pdf"
+        label="Download Figure as HTML",
+        data=html_bytes,
+        file_name="dome_figure.html",
+        mime="text/html"
     )
 
     # ZIP indirme
